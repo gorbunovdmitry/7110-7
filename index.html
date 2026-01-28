@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предложение от&nbsp;банка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Tag Manager -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98GT8FHBZK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-98GT8FHBZK');
+    </script>
+    
+    <!-- Yandex Metrika -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(96171108, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true,
+            ecommerce: "dataLayer"
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/96171108" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</head>
+<body>
+    <div class="container">
+        <!-- Step 1: Conditions -->
+        <div id="step1" class="step active">
+            <div class="header-image">
+                <img src="images/combo-BMCBP6Ec.png" alt="Credit Card" class="main-graphic">
+            </div>
+            
+            <h1 class="main-title">Удвойте возможности вашей Альфа-Карты</h1>
+            <p class="intro-text">Подключите кредитный лимит и&nbsp;пользуйтесь как&nbsp;кредиткой — без&nbsp;процентов на&nbsp;60 дней</p>
+            
+            <div class="promo-bullet">
+                <img src="images/percent.png" alt="Percent" class="promo-icon-image">
+                <div class="promo-text">60 дней не&nbsp;платите проценты за&nbsp;покупки, переводы и&nbsp;снятие наличных</div>
+            </div>
+            
+            <div class="promo-bullet">
+                <img src="images/image.png" alt="Icon" class="promo-icon-image">
+                <div class="promo-text">Снимайте в&nbsp;банкомате до&nbsp;50&nbsp;000&nbsp;₽ с&nbsp;кредитного счета без&nbsp;комисии</div>
+            </div>
+            
+            <div class="promo-bullet">
+                <img src="images/cashback.png" alt="Cashback" class="promo-icon-image">
+                <div class="promo-text">До&nbsp;50% кэшбэка за&nbsp;покупки<br>у&nbsp;партнёров</div>
+            </div>
+            
+            <button class="cta-button" onclick="goToStep2()">Продолжить</button>
+        </div>
+        
+        <!-- Step 2: Credit Limit Selection -->
+        <div id="step2" class="step">
+            <h1 class="main-title">Выберите кредитный лимит</h1>
+            
+            <div class="credit-limit-section">
+                <div class="input-group">
+                    <label class="input-label">Кредитный лимит</label>
+                    <input type="text" id="creditLimit" class="credit-input" value="10 000 ₽" >
+                    <div class="range-info">От 10 000 ₽ до&nbsp;120 000 ₽</div>
+                </div>
+            </div>
+            
+            <button class="cta-button" onclick="goToStep3()">Продолжить</button>
+        </div>
+        
+        <!-- Step 3: Agreement -->
+        <div id="step3" class="step">
+            <h1 class="main-title">Согласие с&nbsp;условиями</h1>
+            <p class="intro-text">После подписания всё проверим и&nbsp;подключим кредитный лимит</p>
+            
+            <div class="agreement-section">
+                <div class="checkbox-block">
+                    <input type="checkbox" id="agreementCheckbox" checked class="agreement-checkbox">
+                    <label for="agreementCheckbox" class="checkbox-label">
+                        Подтверждаю своё ознакомление и&nbsp;согласие со&nbsp;всеми указанными далее условиями, а&nbsp;также с&nbsp;получением услуг
+                    </label>
+                </div>
+                
+                <div class="details-block">
+                    <div class="details-header" onclick="toggleDetails()">
+                        <span class="chevron">▼</span>
+                        <span>Подробнее</span>
+                    </div>
+                    <div id="detailsContent" class="details-content" style="display: none;">
+                        <div class="detail-checkbox-item">
+                            <input type="checkbox" id="personalDataCheckbox" checked class="detail-checkbox">
+                            <label for="personalDataCheckbox" class="detail-checkbox-label">
+                                Согласие на&nbsp;обработку персональных данных
+                            </label>
+                        </div>
+                        <div class="detail-checkbox-item">
+                            <input type="checkbox" id="creditAssignmentCheckbox" checked class="detail-checkbox">
+                            <label for="creditAssignmentCheckbox" class="detail-checkbox-label">
+                                Согласие на&nbsp;уступку прав по&nbsp;кредитному договору
+                            </label>
+                        </div>
+                        <div class="detail-checkbox-item">
+                            <input type="checkbox" id="marketingCheckbox" checked class="detail-checkbox">
+                            <label for="marketingCheckbox" class="detail-checkbox-label">
+                                Согласие на&nbsp;получение рекламных рассылок
+                            </label>
+                        </div>
+                        <div class="detail-checkbox-item">
+                            <input type="checkbox" id="financialProtectionCheckbox" checked class="detail-checkbox">
+                            <label for="financialProtectionCheckbox" class="detail-checkbox-label">
+                                Заявление о финансовой защите
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">Куда прислать документы</label>
+                    <input type="email" id="emailInput" class="email-input" placeholder="Введите email">
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                Нажимая "Подписать" и&nbsp;вводя код смс, вы подписываете договор кредита (раздел «Документы»), оформляете дополнительные услуги (если&nbsp;их получение было выбрано вами), подтверждаете иные сделанные вами волеизъявления.
+            </div>
+            
+            <button class="cta-button" id="submitButton" onclick="submitForm()" disabled>Продолжить</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
