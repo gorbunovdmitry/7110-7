@@ -180,14 +180,8 @@ function areAllDetailCheckboxesChecked() {
     });
 }
 
-// Initialize step 2 (credit limit selection)
+// Initialize step 2 validation
 function initializeStep2() {
-    // Initialize credit limit input on step 2
-    initializeCreditLimit();
-}
-
-// Initialize step 3 (agreement) validation
-function initializeStep3() {
     // Email input validation
     const emailInput = document.getElementById('emailInput');
     if (emailInput) {
@@ -241,14 +235,12 @@ function goToStep2() {
     
     if (step1 && step2) {
         step1.classList.remove('active');
-        step1.style.display = 'none';
         step2.classList.add('active');
-        step2.style.display = 'block';
         
         // Scroll to top
         window.scrollTo(0, 0);
         
-        // Initialize step 2 (credit limit selection)
+        // Initialize step 2 validation
         setTimeout(function() {
             initializeStep2();
         }, 100);
@@ -267,44 +259,8 @@ function goToStep2() {
     }
 }
 
-// Go to step 3
-function goToStep3() {
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    
-    console.log('goToStep3 called', { step2, step3 });
-    
-    if (step2 && step3) {
-        step2.classList.remove('active');
-        step2.style.display = 'none';
-        step3.classList.add('active');
-        step3.style.display = 'block';
-        
-        // Scroll to top
-        window.scrollTo(0, 0);
-        
-        // Initialize step 3 validation
-        setTimeout(function() {
-            initializeStep3();
-        }, 100);
-        
-        // Track step 3 view
-        if (typeof gtag !== 'undefined') {
-            gtag('event', '3999_step3_view_var1', {
-                variant_name: 'ghk_3999_1'
-            });
-        }
-        if (typeof ym !== 'undefined') {
-            ym(96171108, 'reachGoal', '3999_step3_view_var1');
-        }
-    } else {
-        console.error('Step elements not found', { step2, step3 });
-    }
-}
-
 // Make function globally available
 window.goToStep2 = goToStep2;
-window.goToStep3 = goToStep3;
 window.toggleDetails = toggleDetails;
 window.submitForm = submitForm;
 
@@ -340,25 +296,14 @@ function validateForm() {
 
 // Submit form
 function submitForm() {
-    const agreementCheckbox = document.getElementById('agreementCheckbox');
     const emailInput = document.getElementById('emailInput');
-    
-    if (!agreementCheckbox || !agreementCheckbox.checked) {
-        alert('Пожалуйста, подтвердите согласие с условиями');
-        return;
-    }
-    
-    const email = emailInput.value.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert('Пожалуйста, введите корректный email');
-        return;
-    }
+    const email = emailInput ? emailInput.value.trim() : '';
     
     // Track form submission
     if (typeof gtag !== 'undefined') {
         gtag('event', '3999_form_submit_var1', {
             variant_name: 'ghk_3999_1',
-            email: email
+            email: email || ''
         });
     }
     if (typeof ym !== 'undefined') {
