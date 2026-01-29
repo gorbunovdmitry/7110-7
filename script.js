@@ -180,8 +180,14 @@ function areAllDetailCheckboxesChecked() {
     });
 }
 
-// Initialize step 2 validation
+// Initialize step 2 (credit limit selection)
 function initializeStep2() {
+    // Initialize credit limit input on step 2
+    initializeCreditLimit();
+}
+
+// Initialize step 3 (agreement) validation
+function initializeStep3() {
     // Email input validation
     const emailInput = document.getElementById('emailInput');
     if (emailInput) {
@@ -235,12 +241,14 @@ function goToStep2() {
     
     if (step1 && step2) {
         step1.classList.remove('active');
+        step1.style.display = 'none';
         step2.classList.add('active');
+        step2.style.display = 'block';
         
         // Scroll to top
         window.scrollTo(0, 0);
         
-        // Initialize step 2 validation
+        // Initialize step 2 (credit limit selection)
         setTimeout(function() {
             initializeStep2();
         }, 100);
@@ -259,8 +267,44 @@ function goToStep2() {
     }
 }
 
+// Go to step 3
+function goToStep3() {
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    
+    console.log('goToStep3 called', { step2, step3 });
+    
+    if (step2 && step3) {
+        step2.classList.remove('active');
+        step2.style.display = 'none';
+        step3.classList.add('active');
+        step3.style.display = 'block';
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+        
+        // Initialize step 3 validation
+        setTimeout(function() {
+            initializeStep3();
+        }, 100);
+        
+        // Track step 3 view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', '3999_step3_view_var1', {
+                variant_name: 'ghk_3999_1'
+            });
+        }
+        if (typeof ym !== 'undefined') {
+            ym(96171108, 'reachGoal', '3999_step3_view_var1');
+        }
+    } else {
+        console.error('Step elements not found', { step2, step3 });
+    }
+}
+
 // Make function globally available
 window.goToStep2 = goToStep2;
+window.goToStep3 = goToStep3;
 window.toggleDetails = toggleDetails;
 window.submitForm = submitForm;
 
@@ -278,16 +322,15 @@ function toggleDetails() {
 
 // Validate form
 function validateForm() {
-    const agreementCheckbox = document.getElementById('agreementCheckbox');
-    const emailInput = document.getElementById('emailInput');
+    const personalDataCheckbox = document.getElementById('personalDataCheckbox');
+    const creditAssignmentCheckbox = document.getElementById('creditAssignmentCheckbox');
     const submitButton = document.getElementById('submitButton');
     
-    if (agreementCheckbox && emailInput && submitButton) {
-        const email = emailInput.value.trim();
-        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        const agreementChecked = agreementCheckbox.checked;
+    if (personalDataCheckbox && creditAssignmentCheckbox && submitButton) {
+        const personalDataChecked = personalDataCheckbox.checked;
+        const creditAssignmentChecked = creditAssignmentCheckbox.checked;
         
-        if (emailValid && agreementChecked) {
+        if (personalDataChecked && creditAssignmentChecked) {
             submitButton.disabled = false;
         } else {
             submitButton.disabled = true;
